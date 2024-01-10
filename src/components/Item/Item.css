@@ -1,0 +1,27 @@
+.contenedor-item{
+    background-color: rgb(232, 232, 232);
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+.item-contenedor-img img{
+    width:15rem;
+    height: 15rem;
+    border-radius: 1rem;
+}
+.item-counter{
+    margin-bottom: 2rem;
+}
+.item-detalle{
+    margin-bottom: 1.5rem;
+}
+.item-detalle button{
+    padding:1rem;
+    background-color: rgb(126, 8, 200);
+    color: rgb(255, 255, 255); ;
+}
+@media (min-width:768px){
+    .item-detalle button{
+        padding: 0.5rem;
+    }
+}
