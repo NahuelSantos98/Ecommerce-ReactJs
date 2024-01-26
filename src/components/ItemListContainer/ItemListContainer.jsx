@@ -4,7 +4,7 @@ import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
 
 const ItemListContainer = ({ greetings }) => {
-    const styleGreetings = {color: "white", fontSize: 40, marginTop:40};
+    const styleGreetings = {color: "black", fontSize: 50, marginTop:40};
     const [products, setProducts] = useState([])
     const { category } = useParams()
 
