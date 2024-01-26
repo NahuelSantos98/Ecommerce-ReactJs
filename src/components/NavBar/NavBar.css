@@ -79,10 +79,4 @@ h2 {
     border: none;
     }
 }
-@media (min-width: 480px) {
-    .nav li {
-    border-color: none;
-    border-width: none;
-    border: none;
-    }
-}
+

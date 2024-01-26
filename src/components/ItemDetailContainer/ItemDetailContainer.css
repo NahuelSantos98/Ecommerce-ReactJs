@@ -3,3 +3,8 @@
         margin:" 2rem 10rem"
     }
 }
+@media (max-width:768px){
+    .margin{
+        padding: 5%;
+    }
+}
