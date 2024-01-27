@@ -45,6 +45,7 @@ h2 {
 }
 .link{
     text-decoration: none;
+    color: white;
 }
 .ActiveOption{
     font-size: 1.5rem;

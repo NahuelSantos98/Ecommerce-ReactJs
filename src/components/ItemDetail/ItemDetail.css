@@ -15,10 +15,14 @@
 .item-detalle{
     margin-bottom: 1.5rem;
 }
-.item-detalle button{
+.item-detalle button, .buttonGoToCart{
     padding:1rem;
     background-color: rgb(22, 104, 118);
     color: rgb(255, 255, 255); ;
+}
+.buttonGoToCart{
+    margin-bottom: 1rem;
+    border-radius: 2rem;
 }
 @media (min-width:768px){
     .item-detalle button{

@@ -4,7 +4,7 @@ import { CartContext } from '../../context/CartContext';
 
 const Counter = ({ stock, initial, product }) => {
   const [count, setCount] = useState(initial);
-  const {addToCart} = useContext(CartContext); 
+  const {cart, addToCart, isInCart} = useContext(CartContext); 
 
 
 
@@ -21,9 +21,9 @@ const Counter = ({ stock, initial, product }) => {
   };
 
   const handleAddToCart = () => {
-    const newItem = {...product, quantity: count}  //Hace que guarde el producto y la cantidad DENTRO del objeto
-    addToCart([newItem])//Se desestructura lo que habia en el cart y se agrega el nuevo item
-  };
+    const newItem = {...product, quantity:count}
+    addToCart(newItem)     
+}
 
 
   return (

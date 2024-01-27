@@ -21,7 +21,7 @@ const NavBar = () => {
             <NavLink to={`/category/jewelry`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}><li type="none">Joyas</li></NavLink>
             <NavLink to={`/category/electronics`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}><li type="none">Electronica</li></NavLink>
             <NavLink to={`/category/women's clothing`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}><li type="none">Ropa Femenina</li></NavLink>
-            <li type="none">{<CartWidget/>}</li>
+            <NavLink to={`/cart`} className="link"><li type="none">{<CartWidget/>}</li></NavLink>
         </ul>
     </div>
   )

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './ItemDetail.css'
 import Counter from '../Counter/Counter';
+import { CartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = ({ product }) => {
 const styleLoading = {fontSize: "5rem", color: "white", textAlign: "center" }
+
+const {isInCart} = useContext(CartContext); 
+
+
 
   if (!product) {
     return <p style={styleLoading}>Loading...</p>;
@@ -22,10 +28,15 @@ const styleLoading = {fontSize: "5rem", color: "white", textAlign: "center" }
           <p className='item-info'>Precio: ${product.price}</p>
           <p className='item-info'>Stock: {product.stock}</p>
           <p>{product.description}</p>
-        </section>
+          </section>
+      { isInCart(product.id) ? 
+      <Link to='/cart'><button className='buttonGoToCart'>Ir al carrito</button></Link>
+      :
         <section className='item-counter'>
           <Counter product={...product} stock={product.stock} initial={0}/>
         </section>
+      }
+
       </article>
     </div>
   );

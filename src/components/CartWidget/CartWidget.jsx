@@ -1,6 +1,6 @@
 import React from 'react'
 import './CartWidget.css'
-import { Link } from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 
 const CartWidget = () => {
   return (
