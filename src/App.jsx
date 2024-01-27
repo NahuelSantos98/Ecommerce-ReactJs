@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import CartWidget from './components/CartWidget/CartWidget';
+import {CartContextProvider} from './context/CartContext'
 
 function App() {
+
+
   return (
     <div className="app">
+      <CartContextProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -18,6 +22,7 @@ function App() {
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
+      </CartContextProvider>
     </div>
   );
 }
