@@ -1,5 +1,44 @@
+.contenedor--Info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 5%;
+}
+.contenedor--Item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .item-contenedor-img img{
     width:15rem;
     height: 15rem;
     border-radius: 1rem;
+}
+.purchase{
+    font-size: 2rem;
+    padding: 0% 2%;
+    margin-bottom: .5rem;
+    color: black;
+    text-decoration: underline;
+}
+.contenedor--Total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.contenedor--Total button{
+    background-color: rgb(212, 24, 24);
+    color: white;
+    border-radius: 2rem;
+    padding: .6rem;
+}
+.contenedor--Item button{
+    margin-bottom: 2rem;
+    border-radius: 2rem;
+    background-color: rgb(255, 0, 0);
+    color: white;
 }
