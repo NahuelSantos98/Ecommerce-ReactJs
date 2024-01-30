@@ -9,12 +9,9 @@ const styleLoading = {fontSize: "5rem", color: "white", textAlign: "center" }
 
 const {isInCart} = useContext(CartContext); 
 
-
-
   if (!product) {
     return <p style={styleLoading}>Loading...</p>;
   }
-
   return (
     <div>
       <article className='contenedor-item'>
@@ -28,15 +25,14 @@ const {isInCart} = useContext(CartContext);
           <p className='item-info'>Precio: ${product.price}</p>
           <p className='item-info'>Stock: {product.stock}</p>
           <p>{product.description}</p>
-          </section>
+        </section>
       { isInCart(product.id) ? 
-      <Link to='/cart'><button className='buttonGoToCart'>Ir al carrito</button></Link>
-      :
+        <Link to='/cart'><button className='buttonGoToCart'>Ir al carrito</button></Link>
+          : 
         <section className='item-counter'>
           <Counter product={{...product}} stock={product.stock}/>
         </section>
       }
-
       </article>
     </div>
   );
