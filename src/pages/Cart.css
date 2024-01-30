@@ -1,44 +1,84 @@
-.contenedor--Info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0% 5%;
+.purchase{
+    color: black;
+    margin-left: 1rem;
 }
-.contenedor--Item{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.contenedor--Info{
     text-align: center;
 }
-.item-contenedor-img img{
-    width:15rem;
-    height: 15rem;
-    border-radius: 1rem;
+.empty{
+    color: red;
 }
-.purchase{
-    font-size: 2rem;
-    padding: 0% 2%;
-    margin-bottom: .5rem;
-    color: black;
-    text-decoration: underline;
+.item--Titulo{
+    font-size: 1.5rem;
 }
-.contenedor--Total{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+.contenedor--Item{
+    margin-bottom: 2rem;
+    background-color: white;
+    border: solid;
+    border-radius: 2rem;
+    margin: 5%;
+}
+.contenedor--P{
+    font-size: 1.2rem;
+}
+.contenedor--P span{
+    font-weight: bold;
+}
+.buttonClear, .contenedor--Total button{
+    background-color: red;
+    color: white;
+}
+.buttonClear{
+    margin-bottom: 1rem;
+    padding: .7rem;
+    border-radius: 2.5rem;
 }
 .contenedor--Total button{
-    background-color: rgb(212, 24, 24);
-    color: white;
+    padding: 1rem;
     border-radius: 2rem;
-    padding: .6rem;
 }
-.contenedor--Item button{
-    margin-bottom: 2rem;
-    border-radius: 2rem;
-    background-color: rgb(255, 0, 0);
-    color: white;
+.contenedor--Total{
+    margin-bottom: 3rem;
+}
+@media (min-width: 768px) {
+    .contenedor--Item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 3rem;
+    }
+    .contenedor--TrashCount{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1.9rem;
+        margin-right: 2rem;
+    }
+    .item--Titulo{
+        width:15rem;
+    }
+    .contenedor--Total{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+    }
+    .image{
+        margin-top: 2rem;
+    }
+    .title--img--p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-right: 5rem;
+        margin-bottom: 1rem;
+    }
+    .title--img--p h4{
+        margin-left: 1rem;
+    }
 }

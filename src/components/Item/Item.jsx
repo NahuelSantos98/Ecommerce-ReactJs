@@ -17,7 +17,7 @@ const Item = ({product}) => {
       </section>
       <section className='item-detalle'>
         <Link to={`/product/${product.id}`} >
-          <button>Ver detalle</button>
+          <button className='detail'>Ver detalle</button>
         </Link>
       </section>
     </article>

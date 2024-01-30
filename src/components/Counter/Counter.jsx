@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import './Counter.css';
 import { CartContext } from '../../context/CartContext';
 
-const Counter = ({ stock, initial, product }) => {
-  const [count, setCount] = useState(initial);
-  const {cart, addToCart, isInCart} = useContext(CartContext); 
-
-
+const Counter = ({ stock, product }) => {
+  const [count, setCount] = useState(0);
+  const { addToCart} = useContext(CartContext);
 
   const increment = () => {
     if (count < stock) {
@@ -21,10 +19,9 @@ const Counter = ({ stock, initial, product }) => {
   };
 
   const handleAddToCart = () => {
-    const newItem = {...product, quantity:count}
-    addToCart(newItem)     
-}
-
+    const newItem = { ...product, quantity: count };
+    addToCart(newItem);
+  };
 
   return (
     <div className='contenedor__counter'>

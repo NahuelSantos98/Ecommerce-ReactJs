@@ -33,7 +33,7 @@ const {isInCart} = useContext(CartContext);
       <Link to='/cart'><button className='buttonGoToCart'>Ir al carrito</button></Link>
       :
         <section className='item-counter'>
-          <Counter product={...product} stock={product.stock} initial={0}/>
+          <Counter product={{...product}} stock={product.stock}/>
         </section>
       }
 

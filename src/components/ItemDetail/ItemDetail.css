@@ -4,6 +4,9 @@
     border-radius: 1rem;
     text-align: center;
 }
+.contenedor-item h3{
+    margin: 1rem;
+}
 .item-contenedor-img img{
     width:15rem;
     height: 15rem;
