@@ -5,7 +5,7 @@ import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 
 const ItemDetail = ({ product }) => {
-const styleLoading = {fontSize: "5rem", color: "white", textAlign: "center" }
+const styleLoading = {fontSize: "3rem", color: "grey", textAlign: "center", marginTop: "10rem" }
 
 const {isInCart} = useContext(CartContext); 
 
