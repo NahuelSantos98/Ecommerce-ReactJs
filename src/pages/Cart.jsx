@@ -49,7 +49,6 @@ const Cart = () => {
                         </div>
                     </>
                 )}
-                <Link to={`/Admin`}><button>Hola</button></Link>
             </div>
         </div>
     );
