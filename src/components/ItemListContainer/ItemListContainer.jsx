@@ -11,21 +11,20 @@ const ItemListContainer = ({ greetings }) => {
     const [products, setProducts] = useState([])
     const { category } = useParams()
 
-useEffect(() => {
-
-    const productsRef = category ? query(collection(db, 'products'), where('category', '==', category)) : collection(db, 'products');
-
-    getDocs(productsRef)
-    .then(snapshot=>{
-        const productsFormatted = snapshot.docs.map(doc=> {
-            const data = doc.data()
-            return {id: doc.id, ...data}
-        })
-        setProducts(productsFormatted)
-    })
-    .catch(err=> console.log(err))
-
-}, [category])
+    useEffect(() => {
+        const productsRef = category
+          ? query(collection(db, 'products'), where('category', '==', category ))
+          : collection(db, 'products')
+    
+        getDocs(productsRef)
+          .then(snapshot => {
+            const productsFormatted = snapshot.docs.map( doc => {
+              const data = doc.data()
+              return {id: doc.id, ...data }
+            })
+            setProducts(productsFormatted)
+          })
+      }, [category]);
 
 return (
     <div className='divBody'>

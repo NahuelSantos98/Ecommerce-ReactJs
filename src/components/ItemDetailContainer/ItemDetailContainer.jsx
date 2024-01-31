@@ -11,16 +11,18 @@ const ItemDetailContainer = () => {
 
 
 
-  useEffect(() => {
+  useEffect(() => { 
     const productRef = doc(db, 'products', id)
+
     getDoc(productRef)
-    .then(snapshot=>{
-      const data = snapshot.data()
-      const productFormatted = {id: snapshot.id , ...data}
-      setProduct(productFormatted)
-    })
-    .catch(err=>console.log(err))
-  }, [id]);
+     .then(snapshot =>{
+       const data = snapshot.data()
+       const productFormatted = { id: snapshot.id, ...data}
+       setProduct(productFormatted)
+     }).catch(err => {
+      console.log(err)
+     })
+  }, [id])
 
 
   return (
