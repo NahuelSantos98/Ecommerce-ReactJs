@@ -13,8 +13,9 @@ const ItemListContainer = ({ greetings }) => {
 
 useEffect(() => {
 
-    const productsRef = category ? query(collection(db, 'products'), where('category', '===', category))
-    : collection(db, 'products')
+    const productsRef = category ? query(collection(db, 'products'), where('category', '==', category)) : collection(db, 'products');
+
+
 
     getDocs(productsRef)
     .then(snapshot=>{

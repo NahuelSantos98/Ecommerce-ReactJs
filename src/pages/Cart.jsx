@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Counter from "../components/Counter/Counter";
 import { CartContext } from '../context/CartContext';
+import {Link} from 'react-router-dom'
 import './Cart.css';
 
 const Cart = () => {
@@ -48,6 +49,7 @@ const Cart = () => {
                         </div>
                     </>
                 )}
+                <Link to={`/Admin`}><button>Hola</button></Link>
             </div>
         </div>
     );

@@ -12,8 +12,6 @@ const ItemDetailContainer = () => {
 
 
   useEffect(() => {
-
-
     const productRef = doc(db, 'products', id)
     getDoc(productRef)
     .then(snapshot=>{
