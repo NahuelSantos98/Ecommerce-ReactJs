@@ -17,6 +17,7 @@ const Cart = () => {
                 {cart.length === 0 ? (
                     <>
                         <h3 className="empty">Tu carrito está vacío...</h3>
+                        <Link to="/purchases"><button className="btn-state">Estados de compra</button></Link>
                     </>
 
                 ) : (

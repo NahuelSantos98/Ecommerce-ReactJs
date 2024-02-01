@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Admin from './pages/Admin';
 import CheckOut from './pages/CheckOut'
 import { CartContextProvider } from './context/CartContext';
+import Purchases from './components/Purchases/Purchases';
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
             <Route path='/Admin' element={<Admin/>}/>            
             <Route path="/" element={<Home />} />
             <Route path="/catalogo" element={<ItemListContainer greetings="Bienvenidos" />} />
-            <Route path="/category/:category" element={<ItemListContainer greetings="Bienvenidos" />} />
+            <Route path="/category/:category" element={<ItemListContainer greetings="Productos" />} />
             <Route path="/product/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/purchases" element={<Purchases/>}/>
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </BrowserRouter>
