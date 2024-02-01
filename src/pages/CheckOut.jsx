@@ -1,19 +1,38 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import {addDoc, collection} from 'firebase/firestore'
+import {db} from '../services/firebaseConfig'
 import './css/CheckOut.css';
 
 const CheckOut = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, cleanCart, totalQuantity } = useContext(CartContext);
   const [values, setValues] = useState({
     name: '',
     address: '',
     email: '',
   });
-console.log(values)
+const [orderId, setOrderId] = useState(null)
 
-  const handleSubmit = () => {
-    // Lógica para manejar la confirmación de la compra
+const ordersRef = collection(db, 'orders')
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    const order = {
+      cart: cart.map(item => ({
+        name: item.name, 
+        category: item.category, 
+        quantity: item.quantity
+      })),
+      clientData: values,
+      dateHour: new Date(),
+      total: totalQuantity(),
+    };
+    
+      addDoc(ordersRef, order)
+        .then(doc=>{
+          setOrderId(doc.id)
+          cleanCart()
+        })
   };
 
   const handleInputChange = (evt) => {
@@ -23,16 +42,23 @@ console.log(values)
     });
   };
 
+if(orderId){
+  return (<div className='centrar confirmed shake-left'>
+    <h3>Su compra ha sido confirmada:</h3>
+    <p>Su orden de compra es: <span>{orderId}</span></p>
+    <Link to="/"><button className='catalogoBtn'>Seguir navegando</button></Link>
+  </div>)
+}
+
+  if(cart.length === 0){
+    return <Navigate to="/"/>
+  }
+
+
+
   return (
     <>
-      {cart.length === 0 ? (
-        <div className='centrar'>
-              <h3 className='empty vacio'>Tu carrito está vacío...</h3>
-       <Link to="/"><button>Volver</button></Link>
-        </div>
-   
-      ) : (
-        <div className="centrar">
+        <div className="centrar ">
             <form className='form-container' onSubmit={handleSubmit}>
             <h2>Confirmar tu compra</h2>
             <input type="text" className="form-input" name="name" id="name" placeholder="Ingrese su nombre"  onChange={handleInputChange}/>
@@ -45,7 +71,6 @@ console.log(values)
             </div>
             </form>
           </div>
-      )}
     </>
   );
 };

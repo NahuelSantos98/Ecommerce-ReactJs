@@ -15,7 +15,10 @@ const Cart = () => {
             ) : null}
             <div className="contenedor--Info">
                 {cart.length === 0 ? (
-                    <h3 className="empty">Tu carrito está vacío...</h3>
+                    <>
+                        <h3 className="empty">Tu carrito está vacío...</h3>
+                    </>
+
                 ) : (
                     <>
                         <div className="contenedor--Items">
