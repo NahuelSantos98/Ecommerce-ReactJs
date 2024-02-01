@@ -3,14 +3,14 @@ import './ItemDetail.css'
 import Counter from '../Counter/Counter';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading'
 
 const ItemDetail = ({ product }) => {
-const styleLoading = {fontSize: "3rem", color: "grey", textAlign: "center", marginTop: "10rem" }
 
 const {isInCart} = useContext(CartContext); 
 
   if (!product) {
-    return <p style={styleLoading}>Loading...</p>;
+    return <Loading/>
   }
   return (
     <div>
