@@ -72,6 +72,7 @@ const CheckOut = () => {
       <div className='centrar confirmed'>
         <h3>Su compra ha sido confirmada:</h3>
         <p>Su orden de compra es: <span>{orderId}</span></p>
+        <p>Guardese el numero de compra para ver la informacion luego</p>
         <Link to="/"><button className='catalogoBtn'>Seguir navegando</button></Link>
         <Link to="/purchases"><button className='purchasesBtn'>Ver compras</button></Link>
       </div>
