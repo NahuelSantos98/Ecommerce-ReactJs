@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../services/firebaseConfig';
 import { validationForm } from '../services/validationForm';
 import './css/CheckOut.css';
@@ -47,7 +47,29 @@ const CheckOut = () => {
         })
         .catch(err=>console.log("Firebase NO esta andando: ", err));
     }
+
+    cart.forEach( item => {
+      const docRef = doc(db, 'products', item.id)
+      
+      getDoc(docRef)
+        .then(doc=>{
+          let stock = doc.data().stock
+          if (stock - item.quantity >= 0){
+            updateDoc(docRef, {stock: stock - item.quantity})
+          }else{
+            alert("No hay stock del producto: " , doc.data().name)
+          }
+        })
+    });
+
+
   };
+
+
+
+
+
+
 
   if (orderId) {
     return (
@@ -59,7 +81,6 @@ const CheckOut = () => {
       </div>
     );
   }
-
   if (cart.length === 0) {
     return <Navigate to="/" />;
   }

@@ -1,17 +1,17 @@
-import React, {useContext} from 'react';
-import './ItemDetail.css'
+import React, { useContext } from 'react';
+import './ItemDetail.css';
 import Counter from '../Counter/Counter';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading/Loading'
+import Loading from '../Loading/Loading';
 
 const ItemDetail = ({ product }) => {
-
-const {isInCart} = useContext(CartContext); 
+  const { isInCart } = useContext(CartContext);
 
   if (!product) {
-    return <Loading/>
+    return <Loading />;
   }
+
   return (
     <div>
       <article className='contenedor-item'>
@@ -26,13 +26,17 @@ const {isInCart} = useContext(CartContext);
           <p className='item-info'>Stock: {product.stock}</p>
           <p>{product.description}</p>
         </section>
-      { isInCart(product.id) ? 
-        <Link to='/cart'><button className='buttonGoToCart'>Ir al carrito</button></Link>
-          : 
-        <section className='item-counter'>
-          <Counter product={{...product}} stock={product.stock}/>
-        </section>
-      }
+        {isInCart(product.id) ? (
+          <Link to='/cart'>
+            <button className='buttonGoToCart'>Ir al carrito</button>
+          </Link>
+        ) : product.stock === 0 ? (
+            <p className='noStock'>No hay stock disponible, lo sentimos.</p> 
+        ) : (
+          <section className='item-counter'>
+            <Counter product={{ ...product }} stock={product.stock} />
+          </section>
+        )}
       </article>
     </div>
   );

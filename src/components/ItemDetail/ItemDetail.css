@@ -27,6 +27,13 @@
     margin-bottom: 1rem;
     border-radius: 2rem;
 }
+
+.noStock{
+    color: red;
+    padding: 2rem;
+    font-weight: bold;
+}
+
 @media (min-width:768px){
     .item-detalle button{
         padding: 0.5rem;
