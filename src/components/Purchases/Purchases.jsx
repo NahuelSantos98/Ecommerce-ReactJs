@@ -1,29 +1,37 @@
 import React, { useState } from "react";
-import { doc, getDoc, collection } from 'firebase/firestore';
+import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../services/firebaseConfig';
 
 const Purchases = () => {
     const [valueInput, setValueInput] = useState("");
     const [order, setOrder] = useState({});
+    const orderRef = doc(db, 'orders', valueInput);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const orderRef = doc(db, 'orders', valueInput);
-
         getDoc(orderRef)
-         .then((orderDoc) => {
-            if (orderDoc.exists()) {
-            setOrder(orderDoc.data());
-            } else {
-            setOrder(null);
-            }
-        })
-        .catch((err) => console.error(err));
+            .then((orderDoc) => {
+                if (orderDoc.exists()) {
+                    setOrder(orderDoc.data());
+                } else {
+                    setOrder(null);
+                }
+            })
+            .catch((err) => console.error(err));
     };
 
     const handleInputChange = (event) => {
         setValueInput(event.target.value);
+    };
+
+    const handleCancel = () => {
+        deleteDoc(orderRef)
+            .then(() => {
+                setOrder(null);
+                console.log('Compra cancelada exitosamente.');
+            })
+            .catch((error) => console.error('Error al cancelar la compra:', error));
     };
 
     return (
@@ -36,21 +44,22 @@ const Purchases = () => {
                 </form>
             </div>
 
-            {order === null && <p>No se encontró la orden, contacte al número 1234-1234 para más información</p>}
+            {order === null && <p>No se encontró la orden, contacte al número 1234-1234 si usted no fue quien canceló la compra</p>}
 
             {order && order.cart && order.cart.length > 0 && (
                 <div>
                     <h2>Detalles de la orden</h2>
                     <p>Cliente: {order.clientData.name}</p>
                     <p>Email: {order.clientData.email}</p>
-                    <p>Dia y Hora: {order.dateHour}</p>
+                    <p>Día y Hora: {order.dateHour}</p>
                     {order.cart.map((item, index) => (
                         <div key={index}>
-                            <p>Category: {item.category}</p>
+                            <p>Categoría: {item.category}</p>
                             <p>Producto: {item.name}</p>
                             <p>Cantidad: {item.quantity}</p>
                         </div>
                     ))}
+                    <button className="cancelPurchase" onClick={handleCancel}>Cancelar compra</button>
                 </div>
             )}
         </div>
