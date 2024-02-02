@@ -36,7 +36,7 @@ const CheckOut = () => {
           quantity: item.quantity
         })),
         clientData: values,
-        dateHour: new Date(),
+        dateHour: new Date().toLocaleString(),
         total: totalQuantity(),
       };
 
@@ -60,15 +60,11 @@ const CheckOut = () => {
             alert("No hay stock del producto: " , doc.data().name)
           }
         })
+        .catch(err=>console.log(err))
     });
 
 
   };
-
-
-
-
-
 
 
   if (orderId) {
