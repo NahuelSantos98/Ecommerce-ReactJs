@@ -5,10 +5,40 @@ import { db } from '../../services/firebaseConfig';
 const Purchases = () => {
     const [valueInput, setValueInput] = useState("");
     const [order, setOrder] = useState({});
-    const orderRef = doc(db, 'orders', valueInput);
+
+    const handleCancel = () => {
+        if (!valueInput) {
+            console.error('El valor de entrada es nulo o vacío.');
+            return;
+        }
+
+        const orderRef = doc(db, 'orders', valueInput);
+
+        getDoc(orderRef)
+            .then((orderDoc) => {
+                if (orderDoc.exists()) {
+                    return deleteDoc(orderRef);
+                } else {
+                    console.error('No se encontró la orden.');
+                    return Promise.reject('No se encontró la orden.');
+                }
+            })
+            .then(() => {
+                setOrder(null);
+                console.log('Compra cancelada exitosamente.');
+            })
+            .catch(error => console.error('Error al cancelar la compra:', error));
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!valueInput) {
+            console.error('El valor de entrada es nulo o vacío.');
+            return;
+        }
+
+        const orderRef = doc(db, 'orders', valueInput);
 
         getDoc(orderRef)
             .then((orderDoc) => {
@@ -25,15 +55,6 @@ const Purchases = () => {
         setValueInput(event.target.value);
     };
 
-    const handleCancel = () => {
-        deleteDoc(orderRef)
-            .then(() => {
-                setOrder(null);
-                console.log('Compra cancelada exitosamente.');
-            })
-            .catch((error) => console.error('Error al cancelar la compra:', error));
-    };
-
     return (
         <div className="contenedor-searcher">
             <div>
@@ -44,7 +65,7 @@ const Purchases = () => {
                 </form>
             </div>
 
-            {order === null && <p>No se encontró la orden, contacte al número 1234-1234 si usted no fue quien canceló la compra</p>}
+            {order === null && <p className="alert">No se encontró la orden, contacte al número 1234-1234 si usted no fue quien canceló la compra.</p>}
 
             {order && order.cart && order.cart.length > 0 && (
                 <div>

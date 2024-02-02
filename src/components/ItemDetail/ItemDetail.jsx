@@ -31,7 +31,7 @@ const ItemDetail = ({ product }) => {
             <button className='buttonGoToCart'>Ir al carrito</button>
           </Link>
         ) : product.stock === 0 ? (
-            <p className='noStock'>No hay stock disponible, lo sentimos.</p> 
+            <p className='noStock'>No hay stock disponible, pronto repondremos mas de este producto.</p> 
         ) : (
           <section className='item-counter'>
             <Counter product={{ ...product }} stock={product.stock} />
